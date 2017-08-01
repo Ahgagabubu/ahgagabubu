@@ -1,8 +1,9 @@
+#!/bin/bash
 #########################################################
 # This script can only run on bash or zsh               #
 #########################################################
 
-function printline(){
+printline () {
     echo    "------------------------------------------------------------------------------------"
 }
 
@@ -41,7 +42,13 @@ git submodule update
 
 if [[ $ZSHRC == [Yy] ]];then
     echo -n " Installing zsh configs..."
-    echo "done!"
+    if [ -e "/bin/zsh" ];then
+        cp -rfT oh-my-zsh ~/.oh-my-zsh
+        cp -rf oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+        echo "done!"
+    else
+        echo "zsh not installed!"
+    fi
 fi
 
 if [[ $VIMRC == [Yy] ]];then
@@ -55,8 +62,9 @@ fi
 if [[ $TMUXRC == [Yy] ]];then
     echo -n " Installing tmux configs..."
     mkdir -p ~/.tmux
-    cp -rf tmux-themepack ~/.tmux/
+    cp -rfT tmux-themepack ~/.tmux/tmux-themepack
     cp -rf tmux.conf.template ~/.tmux.conf
+    [ -e /bin/zsh ] && echo "set-option -g default-shell /bin/zsh" >> ~/.tmux.conf
     echo "done!"
 fi
 
