@@ -1,3 +1,6 @@
 [submodule "tmux-themepack"]
 	path = tmux-themepack
 	url = https://github.com/jimeh/tmux-themepack.git
+[submodule "vim-dracula"]
+	path = vim-dracula
+	url = https://github.com/dracula/vim.git
