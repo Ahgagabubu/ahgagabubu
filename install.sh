@@ -7,11 +7,11 @@ case $yn in
     [Yy]*)
         mkdir -p ~/.vim/colors
         cp -rf vimrc ~/.vimrc
-        cp -rf vim_colors/* ~/.vim/colors
+        cp -rf vim-dracula/colors/* ~/.vim/colors/
 
         mkdir -p ~/.tmux/tmux-themepack
         cp -rf tmux.conf ~/.tmux.conf
-        cp -rf tmux_colors/* ~/.tmux/tmux-themepack
+        cp -rf tmux-themepack ~/.tmux/
         echo "Done!"
     ;;
 
