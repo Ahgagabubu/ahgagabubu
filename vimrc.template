@@ -9,4 +9,5 @@ autocmd FileType make setlocal noexpandtab
 color dracula
 if exists('$TMUX')
     set term=screen-256color
+    autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
 endif
