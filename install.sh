@@ -62,8 +62,8 @@ fi
 
 if [[ $TMUXRC == [Yy] ]];then
     echo -n " Installing tmux configs..."
-    mkdir -p ~/.tmux
-    cp -rf tmux-themepack ~/.tmux/
+    mkdir -p ~/.tmux/tmux-themepack
+    cp -rf tmux-themepack/* ~/.tmux/tmux-themepack/
     cp -rf tmux.conf.template ~/.tmux.conf
     [ -e /bin/zsh ] && echo "set-option -g default-shell /bin/zsh" >> ~/.tmux.conf
     echo "done!"
