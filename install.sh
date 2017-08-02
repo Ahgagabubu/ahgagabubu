@@ -44,10 +44,10 @@ if [[ $ZSHRC == [Yy] ]];then
     echo -n " Installing zsh configs..."
     if [ -e "/bin/zsh" ];then
         cp -rfT oh-my-zsh ~/.oh-my-zsh
-        cp -rf oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+        cp -rf zshrc.zsh-template ~/.zshrc
         echo "done!"
     else
-        echo "zsh not installed!"
+        echo "zsh is not at /bin/zsh or not installed!"
     fi
 fi
 
