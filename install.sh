@@ -43,7 +43,8 @@ git submodule update
 if [[ $ZSHRC == [Yy] ]];then
     echo -n " Installing zsh configs..."
     if [ -e "/bin/zsh" ];then
-        cp -rfT oh-my-zsh ~/.oh-my-zsh
+        mkdir -p ~/.oh-my-zsh
+        cp -rf oh-my-zsh/* ~/.oh-my-zsh/
         cp -rf zshrc.zsh-template ~/.zshrc
         echo "done!"
     else
@@ -53,8 +54,8 @@ fi
 
 if [[ $VIMRC == [Yy] ]];then
     echo -n " Installing vim configs..."
-    mkdir -p ~/.vim/colors
-    cp -rf vim-dracula/colors/* ~/.vim/colors/
+    mkdir -p ~/.vim
+    cp -rf vim-dracula/colors ~/.vim/
     cp -rf vimrc.template ~/.vimrc
     echo "done!"
 fi
@@ -62,7 +63,7 @@ fi
 if [[ $TMUXRC == [Yy] ]];then
     echo -n " Installing tmux configs..."
     mkdir -p ~/.tmux
-    cp -rfT tmux-themepack ~/.tmux/tmux-themepack
+    cp -rf tmux-themepack ~/.tmux/
     cp -rf tmux.conf.template ~/.tmux.conf
     [ -e /bin/zsh ] && echo "set-option -g default-shell /bin/zsh" >> ~/.tmux.conf
     echo "done!"
