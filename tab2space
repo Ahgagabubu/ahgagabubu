@@ -1,1 +1,3 @@
+#this command can transfer all files tabs into spaces
+
 find . -name '*.c' ! -type d -exec bash -c 'expand -i -t 4 "$0" > /tmp/e && mv /tmp/e "$0"' {} \;

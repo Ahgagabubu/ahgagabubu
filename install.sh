@@ -35,35 +35,33 @@ fi
 [[ $TMUXRC != [Nn] ]] && TMUXRC=y
 
 printline
-
-# Git submodule update
-git submodule init
-git submodule update
-
 if [[ $ZSHRC == [Yy] ]];then
-    echo -n " Installing zsh configs..."
+    echo "Installing zsh configs..."
     if [ -e "/bin/zsh" ];then
-        mkdir -p ~/.oh-my-zsh
-        cp -rf oh-my-zsh/* ~/.oh-my-zsh/
-        cp -rf zshrc.zsh-template ~/.zshrc
+        rm -rf ~/.oh-my-zsh
+        git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+        cp -rf ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
         echo "done!"
     else
-        echo "zsh is not at /bin/zsh or not installed!"
+        echo "skipped!\n zsh is not at /bin/zsh or not installed!"
     fi
 fi
+printline
 
 if [[ $VIMRC == [Yy] ]];then
-    echo -n " Installing vim configs..."
-    mkdir -p ~/.vim
-    cp -rf vim-dracula/colors ~/.vim/
+    echo "Installing vim configs..."
+    rm -rf /tmp/vim-dracula
+    git clone https://github.com/dracula/vim.git /tmp/vim-dracula
+    cp -rf /tmp/vim-dracula/colors/*.vim ~/.vim/colors/
     cp -rf vimrc.template ~/.vimrc
     echo "done!"
 fi
+printline
 
 if [[ $TMUXRC == [Yy] ]];then
-    echo -n " Installing tmux configs..."
-    mkdir -p ~/.tmux/tmux-themepack
-    cp -rf tmux-themepack/* ~/.tmux/tmux-themepack/
+    echo "Installing tmux configs..."
+    rm -rf ~/.tmux/tmux-themepack
+    git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux/tmux-themepack
     cp -rf tmux.conf.template ~/.tmux.conf
     [ -e /bin/zsh ] && echo "set-option -g default-shell /bin/zsh" >> ~/.tmux.conf
     echo "done!"
