@@ -54,6 +54,7 @@ if [[ $VIMRC == [Yy] ]];then
     git clone https://github.com/dracula/vim.git /tmp/vim-dracula
     cp -rf /tmp/vim-dracula/colors/*.vim ~/.vim/colors/
     cp -rf vimrc.template ~/.vimrc
+    rm -rf /tmp/vim-dracula
     echo "done!"
 fi
 printline
