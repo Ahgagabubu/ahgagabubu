@@ -43,6 +43,7 @@ if [[ $ZSHRC == [Yy] ]];then
         cp -rf ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
         cp -rf zsh_custom/*.zsh ~/.oh-my-zsh/custom/
         sed 's/^ZSH_THEME=.*/ZSH_THEME="ys"/g' -i ~/.zshrc
+        sed 's/^# CASE_SENSITIVE=.*/CASE_SENSITIVE="true"/g' -i ~/.zshrc
         echo "done!"
     else
         echo "skipped!\n zsh is not at /bin/zsh or not installed!"
