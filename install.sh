@@ -42,6 +42,7 @@ if [[ $ZSHRC == [Yy] ]];then
         git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
         cp -rf ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
         cp -rf zsh_custom/*.zsh ~/.oh-my-zsh/custom/
+        sed 's/^ZSH_THEME=.*/ZSH_THEME="ys"/g' -i ~/.zshrc
         echo "done!"
     else
         echo "skipped!\n zsh is not at /bin/zsh or not installed!"
