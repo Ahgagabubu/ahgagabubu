@@ -1,3 +1,4 @@
-source-file "${HOME}/.tmux/tmux-themepack/powerline/block/red.tmuxtheme"
+source-file "${HOME}/.tmux/tmux-themepack/basic.tmuxtheme"
 set -g base-index 1
 setw -g pane-base-index 1
+setw -g mouse on
