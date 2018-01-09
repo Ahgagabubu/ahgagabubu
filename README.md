@@ -1,8 +1,7 @@
 # myenv
 
-An integrated script to install configs of zsh, vim & tmux.
+An integrated script to install configs of zsh, vim & tmux only for Ubuntu.
 Make sure you have zsh vim tmux installed.
 
 TODO: 
-    Add go.vim & GO shell env.
     Add alias for my tools in custom.zsh.
