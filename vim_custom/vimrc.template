@@ -8,6 +8,20 @@ set tabstop=4
 set shiftwidth=4
 color dracula
 
+if system("uname") == "Linux\n"
+	set clipboard=unnamedplus
+elseif system("uname") == "Darwin\n"
+	set clipboard=unnamed
+endif
+
+if has("cscope")
+	set cscopetag
+	if filereadable("cscope.out")
+		cs add cscope.out
+	endif
+	map <F5> :!cscope -Rbq<CR>:cs reset<CR>
+endif
+
 if exists('$TMUX')
     set term=screen-256color
 endif
