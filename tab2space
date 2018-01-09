@@ -1,3 +1,24 @@
-#this command can transfer all files tabs into spaces
+#!/bin/bash
+#This command can transfer all files tabs into spaces
 
-find . -name '*.c' ! -type d -exec bash -c 'expand -i -t 4 "$0" > /tmp/e && mv /tmp/e "$0"' {} \;
+arg1="$(echo -e "$1" | tr -d '[:space:]')"
+arg2="$(echo -e "$2" | tr -d '[:space:]')"
+
+showhelp () {
+	echo "Usage: $0 [options] [file]"
+	echo "options: "
+	echo "    -R         Recursively transfer."
+	echo "    -h         Show this help message."
+	echo ""
+	echo "File arg can read a arg one time, but you can use wildcard like '*.c'"
+	echo "p.s., If use wildcard string, you should pack your wildcard arg with ''"
+}
+
+if [ "$arg1" == "-R" ] && [ "$arg2" != "" ];then
+	find . -name "$arg2" ! -type d -exec bash -c 'expand -i -t 4 "$0" > /tmp/e && mv /tmp/e "$0"' {} \;
+elif [[ "$arg1" != "-"* ]] && [ "$arg1" != "" ];then
+	find . -maxdepth 1 -name "$arg1" ! -type d -exec bash -c 'expand -i -t 4 "$0" > /tmp/e && mv /tmp/e "$0"' {} \;
+else
+	showhelp
+fi
+
