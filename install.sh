@@ -4,7 +4,7 @@
 ##########################################################
 
 printline () {
-    echo    "------------------------------------------------------------------------------------"
+	echo    "------------------------------------------------------------------------------------"
 }
 
 echo    ""
@@ -16,8 +16,8 @@ printline
 read -p " Do you want to continue? [y/N] " CONTINUE
 
 if [[ $CONTINUE != [Yy] ]];then
-    echo " Do nothing & exit!"
-    exit
+	echo " Do nothing & exit!"
+	exit
 fi
 
 read -p " Install all components? (Choose no you can select what you want later.) [Y/n] " INSTALL_ALL
@@ -25,9 +25,9 @@ read -p " Install all components? (Choose no you can select what you want later.
 
 # Check config
 if [[ $INSTALL_ALL != [Yy] ]];then
-    read -p " Install zsh conf? [Y/n] " ZSHRC
-    read -p " Install vim conf? [Y/n] " VIMRC
-    read -p " Install tmux conf? [Y/n] " TMUXRC
+	read -p " Install zsh conf? [Y/n] " ZSHRC
+	read -p " Install vim conf? [Y/n] " VIMRC
+	read -p " Install tmux conf? [Y/n] " TMUXRC
 fi
 
 [[ $ZSHRC != [Nn] ]] && ZSHRC=y
@@ -36,34 +36,36 @@ fi
 
 printline
 if [[ $ZSHRC == [Yy] ]];then
-    echo "Installing zsh configs..."
-    rm -rf ~/.oh-my-zsh
-    git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-    cp -rf ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-    cp -rf zsh_custom/*.zsh ~/.oh-my-zsh/custom/
-    sed 's/^ZSH_THEME=.*/ZSH_THEME="ys"/g' -i ~/.zshrc
-    sed 's/^# CASE_SENSITIVE=.*/CASE_SENSITIVE="true"/g' -i ~/.zshrc
-    echo "done!"
+	echo "Installing zsh configs..."
+	rm -rf ~/.oh-my-zsh
+	git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+	cp -rf ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+	cp -rf zsh_custom/*.zsh ~/.oh-my-zsh/custom/
+	sed 's/^ZSH_THEME=.*/ZSH_THEME="ys"/g' -i ~/.zshrc
+	sed 's/^# CASE_SENSITIVE=.*/CASE_SENSITIVE="true"/g' -i ~/.zshrc
+	echo "done!"
 fi
 printline
 if [[ $VIMRC == [Yy] ]];then
-    echo "Installing vim configs..."
-    rm -rf /tmp/vim-dracula
-    mkdir -p ~/.vim/ftplugin ~/.vim/colors
-    git clone https://github.com/dracula/vim.git /tmp/vim-dracula
-    cp -rf /tmp/vim-dracula/colors/*.vim ~/.vim/colors/
-    cp -rf vim_custom/*.vim ~/.vim/ftplugin/
-    cp -rf vim_custom/vimrc.template ~/.vimrc
-    rm -rf /tmp/vim-dracula
-    echo "done!"
+	echo "Installing vim configs..."
+	rm -rf /tmp/vim-dracula
+	mkdir -p ~/.vim/plugin ~/.vim/ftplugin ~/.vim/colors
+	git clone https://github.com/dracula/vim.git /tmp/vim-dracula
+	cp -rf /tmp/vim-dracula/colors/*.vim ~/.vim/colors/
+	git clone https://github.com/mkitt/tabline.vim.git /tmp/vim-tabline
+	cp -rf /tmp/vim-tabline/plugin/tabline.vim ~/.vim/plugin/
+	cp -rf vim_custom/*.vim ~/.vim/ftplugin/
+	cp -rf vim_custom/vimrc.template ~/.vimrc
+	rm -rf /tmp/vim-dracula
+	echo "done!"
 fi
 printline
 if [[ $TMUXRC == [Yy] ]];then
-    echo "Installing tmux configs..."
-    rm -rf ~/.tmux/tmux-themepack
-    git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux/tmux-themepack
-    cp -rf tmux_custom/tmux.conf.template ~/.tmux.conf
-    [ -e /bin/zsh ] && echo "set-option -g default-shell /bin/zsh" >> ~/.tmux.conf
-    echo "done!"
+	echo "Installing tmux configs..."
+	rm -rf ~/.tmux/tmux-themepack
+	git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux/tmux-themepack
+	cp -rf tmux_custom/tmux.conf.template ~/.tmux.conf
+	[ -e /bin/zsh ] && echo "set-option -g default-shell /bin/zsh" >> ~/.tmux.conf
+	echo "done!"
 fi
 
