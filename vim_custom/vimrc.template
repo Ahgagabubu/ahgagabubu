@@ -4,14 +4,13 @@ set ruler
 set number
 set cursorline
 set noexpandtab
+set mouse=a
 set tabstop=4
 set shiftwidth=4
 color dracula
 
 if system("uname") == "Linux\n"
 	set clipboard=unnamedplus
-elseif system("uname") == "Darwin\n"
-	set clipboard=unnamed
 endif
 
 if has("cscope")
