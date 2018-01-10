@@ -50,12 +50,18 @@ printline
 if [[ $VIMRC == [Yy] ]];then
 	echo "Installing vim configs..."
 	rm -rf tmp
+	mkdir -p ~/.vim/plugin
 	#Install theme dracula
 	git clone https://github.com/dracula/vim.git tmp/dracula
 	cp -rf tmp/dracula/colors tmp/dracula/autoload ~/.vim/
 	#Install tabline
 	git clone https://github.com/mkitt/tabline.vim.git tmp/tabline
 	cp -rf tmp/tabline/plugin ~/.vim/
+	#Install taglist
+	mkdir -p tmp/taglist
+	wget https://sourceforge.net/projects/vim-taglist/files/vim-taglist/4.6/taglist_46.zip/download -P tmp
+	unzip tmp/download -d tmp/taglist
+	cp -rf tmp/taglist/doc tmp/taglist/plugin ~/.vim/
 	#Install nerdtree
 	git clone https://github.com/scrooloose/nerdtree.git tmp/nerdtree
 	cp -rf tmp/nerdtree/autoload tmp/nerdtree/doc tmp/nerdtree/lib tmp/nerdtree/nerdtree_plugin tmp/nerdtree/plugin tmp/nerdtree/syntax ~/.vim/
@@ -64,9 +70,9 @@ if [[ $VIMRC == [Yy] ]];then
 	cp -rf tmp/srcexpl/doc tmp/srcexpl/plugin ~/.vim/
 	#Install Trinity
 	git clone https://github.com/wesleyche/Trinity tmp/trinity
-	cp -rf tmp/trinity/plugin/trinity.vim ~/.vim/plugin
+	cp -rf tmp/trinity/plugin/trinity.vim ~/.vim/plugin/
 
-	cp -rf vim_custom/*.vim ~/.vim/ftplugin/
+	cp -rf vim_custom/ftplugin ~/.vim/
 	cp -rf vim_custom/vimrc.template ~/.vimrc
 	echo "done!"
 fi
