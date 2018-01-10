@@ -45,20 +45,32 @@ if [[ $ZSHRC == [Yy] ]];then
 	sed 's/^# CASE_SENSITIVE=.*/CASE_SENSITIVE="true"/g' -i ~/.zshrc
 	echo "done!"
 fi
+
 printline
 if [[ $VIMRC == [Yy] ]];then
 	echo "Installing vim configs..."
-	rm -rf /tmp/vim-dracula
-	mkdir -p ~/.vim/plugin ~/.vim/ftplugin ~/.vim/colors
-	git clone https://github.com/dracula/vim.git /tmp/vim-dracula
-	cp -rf /tmp/vim-dracula/colors/*.vim ~/.vim/colors/
-	git clone https://github.com/mkitt/tabline.vim.git /tmp/vim-tabline
-	cp -rf /tmp/vim-tabline/plugin/tabline.vim ~/.vim/plugin/
+	rm -rf tmp
+	#Install theme dracula
+	git clone https://github.com/dracula/vim.git tmp/dracula
+	cp -rf tmp/dracula/colors tmp/dracula/autoload ~/.vim/
+	#Install tabline
+	git clone https://github.com/mkitt/tabline.vim.git tmp/tabline
+	cp -rf tmp/tabline/plugin ~/.vim/
+	#Install nerdtree
+	git clone https://github.com/scrooloose/nerdtree.git tmp/nerdtree
+	cp -rf tmp/nerdtree/autoload tmp/nerdtree/doc tmp/nerdtree/lib tmp/nerdtree/nerdtree_plugin tmp/nerdtree/plugin tmp/nerdtree/syntax ~/.vim/
+	#Install srcExpl
+	git clone https://github.com/wesleyche/SrcExpl tmp/srcexpl
+	cp -rf tmp/srcexpl/doc tmp/srcexpl/plugin ~/.vim/
+	#Install Trinity
+	git clone https://github.com/wesleyche/Trinity tmp/trinity
+	cp -rf tmp/trinity/plugin/trinity.vim ~/.vim/plugin
+
 	cp -rf vim_custom/*.vim ~/.vim/ftplugin/
 	cp -rf vim_custom/vimrc.template ~/.vimrc
-	rm -rf /tmp/vim-dracula
 	echo "done!"
 fi
+
 printline
 if [[ $TMUXRC == [Yy] ]];then
 	echo "Installing tmux configs..."

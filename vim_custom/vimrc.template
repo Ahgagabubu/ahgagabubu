@@ -18,9 +18,14 @@ if has("cscope")
 	if filereadable("cscope.out")
 		cs add cscope.out
 	endif
-	map <F5> :!cscope -Rbq<CR>:cs reset<CR>
+	nmap <F9> :!cscope -Rbq<CR>:cs reset<CR>
 endif
 
 if exists('$TMUX')
     set term=screen-256color
 endif
+
+nmap <F5> :TrinityToggleAll<CR>
+nmap <F6> :TrinityToggleTagList<CR>
+nmap <F7> :TrinityToggleSourceExplorer<CR>
+nmap <F8> :TrinityToggleNERDTree<CR>
