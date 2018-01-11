@@ -69,7 +69,6 @@ if [[ $VIMRC == [Yy] ]];then
 	# Insstall vim-go submodules
 	if [ "$GOPATH" != "" ];then
 		vim +GoInstallBinaries +qall
-		export PATH=$PATH:$GOPATH/bin
 	fi
 
 	echo "done!"
