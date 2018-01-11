@@ -3,15 +3,15 @@
 # Make sure zsh is at /bin/zsh & tmux vim are installed. #
 ##########################################################
 
-printline () {
+line () {
 	echo    "------------------------------------------------------------------------------------"
 }
 
 echo    ""
-printline
-echo    "!!! This step will overwrite your vimrc & tmux.conf                              !!!"
+line
+echo    "!!! This step will overwrite your vimrc & tmux.conf & .oh-my-zsh                 !!!"
 echo    "!!! Make sure you have backed up your configs if you want to restore them later. !!!"
-printline
+line
 
 read -p " Do you want to continue? [y/N] " CONTINUE
 
@@ -34,56 +34,53 @@ fi
 [[ $VIMRC != [Nn] ]] && VIMRC=y
 [[ $TMUXRC != [Nn] ]] && TMUXRC=y
 
-printline
+line
 if [[ $ZSHRC == [Yy] ]];then
 	echo "Installing zsh configs..."
+
 	rm -rf ~/.oh-my-zsh
 	git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
 	cp -rf ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-	cp -rf zsh_custom/*.zsh ~/.oh-my-zsh/custom/
 	sed 's/^ZSH_THEME=.*/ZSH_THEME="ys"/g' -i ~/.zshrc
 	sed 's/^# CASE_SENSITIVE=.*/CASE_SENSITIVE="true"/g' -i ~/.zshrc
+
+	cp -rf zsh/*.zsh ~/.oh-my-zsh/custom/
+
+
 	echo "done!"
 fi
 
-printline
+line
 if [[ $VIMRC == [Yy] ]];then
 	echo "Installing vim configs..."
-	rm -rf tmp
-	mkdir -p ~/.vim/plugin
-	#Install theme dracula
-	git clone https://github.com/dracula/vim.git tmp/dracula
-	cp -rf tmp/dracula/colors tmp/dracula/autoload ~/.vim/
-	#Install tabline
-	git clone https://github.com/mkitt/tabline.vim.git tmp/tabline
-	cp -rf tmp/tabline/plugin ~/.vim/
-	#Install taglist
-	mkdir -p tmp/taglist
-	wget https://sourceforge.net/projects/vim-taglist/files/vim-taglist/4.6/taglist_46.zip/download -P tmp
-	unzip tmp/download -d tmp/taglist
-	cp -rf tmp/taglist/doc tmp/taglist/plugin ~/.vim/
-	#Install nerdtree
-	git clone https://github.com/scrooloose/nerdtree.git tmp/nerdtree
-	cp -rf tmp/nerdtree/autoload tmp/nerdtree/doc tmp/nerdtree/lib tmp/nerdtree/nerdtree_plugin tmp/nerdtree/plugin tmp/nerdtree/syntax ~/.vim/
-	#Install srcExpl
-	git clone https://github.com/wesleyche/SrcExpl tmp/srcexpl
-	cp -rf tmp/srcexpl/doc tmp/srcexpl/plugin ~/.vim/
-	#Install Trinity
-	git clone https://github.com/wesleyche/Trinity tmp/trinity
-	cp -rf tmp/trinity/plugin/trinity.vim ~/.vim/plugin/
 
-	cp -rf vim_custom/ftplugin ~/.vim/
-	cp -rf vim_custom/vimrc.template ~/.vimrc
+	# Install Vundle
+	rm -rf ~/.vim
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+	cp -rf vim/vimrc.vundle ~/.vimrc
+	vim +PluginInstall +qall
+
+	# Add custom configs
+	cp -rf vim/ftplugin ~/.vim/
+	cat vim/vimrc.custom >> ~/.vimrc
+
 	echo "done!"
 fi
 
-printline
+line
 if [[ $TMUXRC == [Yy] ]];then
 	echo "Installing tmux configs..."
-	rm -rf ~/.tmux/tmux-themepack
+
+	rm -rf ~/.tmux
 	git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux/tmux-themepack
-	cp -rf tmux_custom/tmux.conf.template ~/.tmux.conf
+
+	cp -rf tmux/tmux.conf ~/.tmux.conf
+
+	# Set zsh as default shell is it exists.
 	[ -e /bin/zsh ] && echo "set-option -g default-shell /bin/zsh" >> ~/.tmux.conf
+
 	echo "done!"
 fi
 
