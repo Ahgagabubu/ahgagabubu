@@ -66,6 +66,9 @@ if [[ $VIMRC == [Yy] ]];then
 	cp -rf vim/ftplugin ~/.vim/
 	cat vim/vimrc.custom >> ~/.vimrc
 
+	# Insstall vim-go submodules
+	vim +GoInstallBinaries +qall
+
 	echo "done!"
 fi
 

@@ -5,18 +5,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
-
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'wesleyche/SrcExpl'
-Plugin 'wesleyche/Trinity'
 Plugin 'majutsushi/tagbar'
-
+Plugin 'Yggdroot/indentLine'
+Plugin 'fatih/vim-go'
 Plugin 'dracula/vim'
-"Plugin 'tomasr/molokai'
-"Plugin 'zeis/vim-kolor'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
