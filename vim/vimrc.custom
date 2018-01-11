@@ -8,7 +8,8 @@ set mouse=a
 set tabstop=4
 set shiftwidth=4
 set clipboard=unnamed
-colorscheme dracula
+set list lcs=tab:\|\ 
+colorscheme molokai
 
 let NERDTreeShowHidden=1
 nmap <F7> :NERDTreeToggle<CR>
