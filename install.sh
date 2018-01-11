@@ -44,9 +44,9 @@ if [[ $ZSHRC == [Yy] ]];then
 	cp -rf ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 	sed 's/^ZSH_THEME=.*/ZSH_THEME="ys"/g' -i ~/.zshrc
 	sed 's/^# CASE_SENSITIVE=.*/CASE_SENSITIVE="true"/g' -i ~/.zshrc
+	echo 'alias vimup="vi +PluginInstall +qall"' >> ~/.zshrc
 
 	cp -rf zsh/*.zsh ~/.oh-my-zsh/custom/
-
 
 	echo "done!"
 fi
