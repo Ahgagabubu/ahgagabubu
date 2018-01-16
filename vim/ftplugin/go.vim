@@ -28,5 +28,5 @@ let g:tagbar_type_go = {
 
 let g:go_fmt_autosave = 0
 
-nmap <F5> :GoRun<CR><CR>
+nmap <F5> :GoRun<CR>
 nmap <F6> :cclose<CR>
