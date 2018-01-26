@@ -8,4 +8,5 @@ if has("cscope")
 		cs add cscope.out
 	endif
 	nmap <F9> :!cscope -Rbqk<CR>:cs reset<CR>
+	nmap <C-\> :cs find c <C-R>=expand("<cword>")<CR><CR>
 endif

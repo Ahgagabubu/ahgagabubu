@@ -26,5 +26,6 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
 \ }
 
-nmap <F5> :GoRun<CR>
+nmap <F4> :GoRun<CR>
+nmap <F5> :GoBuild<CR>
 nmap <F6> :cclose<CR>
